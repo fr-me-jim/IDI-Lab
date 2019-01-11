@@ -1,0 +1,85 @@
+﻿Canviar model:
+	→createBuffers(): m.load
+ 
+
+Varis models:
+	→PaintGl():
+		glBind
+		modelTransform(x Obj)
+		glDrawArrays(x Obj)
+
+modificar mida objecte:
+	→escala = mida-final/mida_inicial(ymax-ymin)
+
+modificar posició:
+	→ 	modelTransform: Aplicar Translate
+
+moure camara ratolí:
+	→funció mousseMoveEvent:
+		angleX
+		angleY
+
+	→viewTransform():
+		translate(-2*radi)
+		rotate(angleX)
+		rotate(angleY)
+		translate(-VRP)
+
+camera 3a persona:
+	→ calcular radi 
+
+iluminació:
+	→ main vertex = main biblia
+
+	→ si al vertex
+		-res
+	
+	→ si al fragment:
+		-copiar funcions Phong y Lambert 
+		-variables necessaries:
+			-in al fragment; out al vertex(i donar-lis valor al main del 								vertex canviant el nom)	
+moure objectes:
+	→ modelTransform:
+		-afegir els canvis/transformación (mitj variables : teclas o Qt)
+		-KeyPressEvent (teclas):
+		-Qt (make current, update i demes)
+
+
+
+signals:
+	→ designer, en comptes de moure, el widget a l’escena, l’escena al widget 			crean funciuons I demes
+
+	→ emit xxx(valor) –.cpp
+	→MyGlWidget.h : al final de tot “public signals:”
+
+	→ alla declarem la funcio(i al .cpp) 
+
+
+
+
+
+segona camera: 
+	→ afegir bool :
+		→ afegir if/else al projectTransform & viewTransform
+
+canviar Color Llum:
+	→ uniform al vertex shader
+	→ GLUint colorLoc; (.h)
+	→ Al principi: (initialize)
+		-glUniform3fv(colorloc, 1, &color(glm::vec3);
+	→ Al slot. (o al KeyPressEvent)
+		-modificar color
+		-glUniform3fv(colorLoc,1,&color)
+
+	→ A carrega shader:
+		-colorLoc = glGetUniform.
+
+	→ Al vertex shader.
+		-canviar:
+			-vec3 colorLoc = vec3(..)
+			-uniform vec3 colorLoc
+
+
+	→ general:
+		-crear i inicialitzar color
+
